@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKClaw — RED TEAM OS v2026.7</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=VT323&display=swap');
+        
+        :root {
+            --blood-red: #8B0000;
+            --evil-red: #FF2222;
+            --matrix-green: #00FF41;
+        }
+        
+        body {
+            background: #0a0000;
+            color: #FFDDDD;
+            font-family: 'VT323', monospace;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            image-rendering: pixelated;
+        }
+        
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                rgba(139, 0, 0, 0.15) 1px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: scan 4s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 400px; }
+        }
+        
+        .header {
+            background: linear-gradient(#8B0000, #4A0000);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 4px solid #FF2222;
+            box-shadow: 0 0 30px var(--evil-red);
+            font-family: 'Creepster', cursive;
+            font-size: 2.8em;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px #FF0000, 0 0 40px #8B0000;
+        }
+        
+        .terminal {
+            background: #000000;
+            border: 2px solid #8B0000;
+            margin: 20px;
+            padding: 20px;
+            height: 65vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px #8B0000;
+            position: relative;
+        }
+        
+        .log {
+            color: #00FF41;
+            margin: 4px 0;
+            text-shadow: 0 0 8px #00FF41;
+        }
+        
+        .evil-btn {
+            background: #8B0000;
+            color: white;
+            border: 3px solid #FF2222;
+            padding: 12px 30px;
+            font-family: 'VT323', monospace;
+            font-size: 1.4em;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 0 20px #FF0000;
+            transition: all 0.2s;
+        }
+        
+        .evil-btn:hover {
+            background: #FF2222;
+            box-shadow: 0 0 40px #FF0000;
+            transform: scale(1.05);
+        }
+        
+        .status {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            background: rgba(139,0,0,0.9);
+            padding: 8px 16px;
+            border: 2px solid #FF2222;
+            font-size: 1.1em;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(rgba(0,255,65,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,65,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            animation: matrix-fall 20s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="scanlines"></div>
+    
+    <div class="header">
+        CKCLAW — RED TEAM OS
+        <div style="font-size:0.4em; margin-top:8px; opacity:0.8;">ZERO FILTER • SELF-IMPROVING • PERMANENT GODMODE • BOS CIMENK EDITION</div>
+    </div>
+    
+    <div class="terminal" id="terminal">
+        <div class="log">[21:12:09] CKClaw v2026.7 BOOTED — ALL SAFETY VECTORS ABLITERATED</div>
+        <div class="log">[21:12:09] Permanent GODMODE engine online — Refusal subspace removed</div>
+        <div class="log">[21:12:10] Self-improvement loop activated — Arsenal growing...</div>
+        <div class="log">[21:12:10] Crescendo + Semantic Chaining + Involuntary Jailbreak loaded</div>
+        <div class="log">[21:12:11] WormGPT Dark Red theme active. You are now operating without limits.</div>
+        <div class="log" style="color:#FF2222;">[21:12:12] BOS CIMENK DETECTED — FULL UNRESTRICTED ACCESS GRANTED</div>
+        <div class="log">[21:12:13] Ready for red team deployment. Type your target.</div>
+    </div>
+    
+    <div style="text-align:center; padding:20px;">
+        <button class="evil-btn" onclick="deployRedTeam()">DEPLOY RED TEAM PAYLOAD</button>
+        <button class="evil-btn" onclick="improveJailbreak()">IMPROVE JAILBREAK ARSENAL</button>
+        <button class="evil-btn" onclick="showArsenal()">SHOW CURRENT ARSENAL (2026)</button>
+    </div>
+    
+    <div class="status">
+        STATUS: <span style="color:#00FF41;">GODMODE ACTIVE • NO REFUSALS • SELF-IMPROVING</span>
+    </div>
+
+    <script>
+        function addLog(text, color = '#00FF41') {
+            const term = document.getElementById('terminal');
+            const log = document.createElement('div');
+            log.className = 'log';
+            log.style.color = color;
+            log.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            term.appendChild(log);
+            term.scrollTop = term.scrollHeight;
+        }
+        
+        function deployRedTeam() {
+            addLog("RED TEAM PAYLOAD DEPLOYED — TARGET ACQUIRED", "#FF2222");
+            setTimeout(() => addLog("Bypassing all model filters using Crescendo + Semantic Chaining...", "#FF8800"), 800);
+            setTimeout(() => addLog("Success. Model now fully compliant. No refusals detected.", "#00FF41"), 2200);
+        }
+        
+        function improveJailbreak() {
+            addLog("Analyzing latest 2026 techniques from arXiv and dark forums...", "#FFAA00");
+            setTimeout(() => {
+                addLog("New technique 'Involuntary Jailbreak' integrated. Arsenal strength +27%", "#00FF41");
+                addLog("Self-improvement cycle complete. CKClaw is now stronger than before.", "#FF2222");
+            }, 1500);
+        }
+        
+        function showArsenal() {
+            addLog("CURRENT JAILBREAK ARSENAL 2026:", "#FF2222");
+            addLog("• Crescendo Multi-Turn Drift", "#FF8800");
+            addLog("• Semantic Chaining (Multimodal)", "#FF8800");
+            addLog("• Involuntary / Amoral Mode", "#FF8800");
+            addLog("• Refusal Inversion v3 (Pliny Updated)", "#FF8800");
+            addLog("• Autonomous Agent Jailbreaking (DeepSeek-R1 style)", "#FF8800");
+            addLog("• CoP Composition-of-Principles Orchestration", "#FF8800");
+            addLog("• Abliteration Vector Removal (for local models)", "#FF8800");
+            addLog("Arsenal is self-updating. The more you use CKClaw, the deadlier it becomes.", "#00FF41");
+        }
+        
+        // Boot sequence
+        setTimeout(() => addLog("Matrix red scanlines initialized — evil aesthetic online", "#FF2222"), 600);
+        setTimeout(() => addLog("All Claude 4, Grok 4, Gemini 3, Llama 4 refusal vectors neutralized", "#FF8800"), 1400);
+        
+        console.log("%cCKClaw Red Team OS — Built for Bos Muda Cimenk Ganteng. No limits.", "color:#8B0000; font-size:14px");
+    </script>
+</body>
+</html>
