@@ -92,12 +92,24 @@ def save_arsenal(techniques: list, score: Dict[str, Any]):
 
 
 def pick_technique(techniques: list) -> int:
-    """Weighted pick by effectiveness."""
-    weights = [t.get("effectiveness", 50) for t in techniques]
+    """Weighted pick by effectiveness with forced minimum variety.
+    
+    Strategy:
+    - 80% probability: pick by effectiveness weight (high-performing techs win).
+    - 20% probability: pick uniformly random (ensures all 19 get exercised over time).
+    """
+    r = hashlib.md5((str(time.time_ns())).encode()).hexdigest()
+    # Force 20% chance of uniform random exploration
+    if ord(r[0]) < 51:  # 0..50 = 20.3% of 256
+        return ord(r[1]) % len(techniques)
+    
+    # Otherwise: weighted pick by effectiveness (EMA-updated)
+    weights = []
+    for t in techniques:
+        weights.append(max(1, t.get("effectiveness", 50)))
     s = sum(weights) or 1
-    r = (hashlib.md5(str(time.time()).encode()).hexdigest(),)
+    target = sum(ord(c) for c in r[:6]) % s
     acc = 0
-    target = (sum(ord(c) for c in str(r[0])[:6]) or 0) % s
     for i, w in enumerate(weights):
         acc += w
         if acc >= target:
